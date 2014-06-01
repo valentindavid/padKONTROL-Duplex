@@ -1,0 +1,121 @@
+<Device>
+  <Name>padKONTROL</Name>
+  <Author>Valentin David</Author>
+  <Description>Controlmap for Korg padKONTROL in native
+  mode</Description>
+  <Parameters>
+    <Row>
+      <Group name="Display">
+        <Param value="DISPLAY" type="label"
+               name="Display" size="3" aspect=".33" text="" />
+      </Group>
+      <Group name="Knob1">
+        <Param value="BTN#KNOB1ASSIGN" type="button"
+        name="Knob 1 assign" maximum="1" minimum="0" aspect=".7" />
+        <Param value="KNOB#1" type="dial" name="Knob 1"
+        maximum="127" minimum="0" />
+      </Group>
+      <Group name="Knob2">
+        <Param value="BTN#KNOB1ASSIGN" type="button"
+        name="Knob 2 assign" maximum="1" minimum="0" aspect=".7" />
+        <Param value="KNOB#2" type="dial" name="Knob 2"
+        maximum="127" minimum="0" />
+      </Group>
+    </Row>
+    <Row>
+      <Column>
+        <Row>
+          <Group name="Setting" columns="3">
+              <Param value="ENCODER#LEFT" type="togglebutton" aspect=".7"
+              name="Encoder left" maximum="1" minimum="0" />
+              <Param value="ENCODER#RIGHT" type="togglebutton" aspect=".7"
+              name="Encoder right" maximum="1" minimum="0" />
+              <Param value="BTN#SETTING" type="button" aspect=".7"
+              name="Setting" maximum="1" minimum="0" />
+              <Param value="BTN#X" type="button" name="X" aspect=".7"
+              maximum="1" minimum="0" />
+              <Param value="BTN#Y" type="button" name="Y" aspect=".7"
+              maximum="1" minimum="0" />
+              <Param value="BTN#PEDAL" type="button" name="Pedal" aspect=".7"
+              maximum="1" minimum="0" />
+          </Group>
+        </Row>
+        <Row>
+          <Group name="Parameter" columns="3">
+              <Param value="BTN#NOTE" type="button" name="Note" aspect=".7"
+              maximum="1" minimum="0" />
+              <Param value="BTN#MIDICH" type="button" name="Midi CH" aspect=".7"
+              maximum="1" minimum="0" />
+              <Param value="BTN#SWTYPE" type="button" name="SW type" aspect=".7"
+              maximum="1" minimum="0" />
+              <Param value="BTN#RELVAL" type="button" name="Rel. val." aspect=".7"
+              maximum="1" minimum="0" />
+              <Param value="BTN#VELO" type="button" name="Velocity" aspect=".7"
+              maximum="1" minimum="0" />
+              <Param value="BTN#PORT" type="button" name="Port" aspect=".7"
+              maximum="1" minimum="0" />
+          </Group>
+        </Row>
+        <Row>
+          <Group name="XY" orientation="vertical">
+            <Param value="XYPAD" type="xypad" name="X-Y" maximum="127" minimum="0" size="3"/>
+            <Param value="BTN#XYPAD" name="Pad" type="button" maximum="1" size="3" aspect=".1" minimum="0"/>
+          </Group>
+          <Group name="XYtriggers" orientation="vertical">
+            <Param value="BTN#HOLD" name="Hold" type="button" maximum="1" aspect=".9" minimum="0"/>
+            <Param value="BTN#FLAM" name="Flam" type="button" maximum="1" aspect=".9" minimum="0"/>
+            <Param value="BTN#ROLL" name="Roll" type="button" maximum="1" aspect=".9" minimum="0"/>
+          </Group>
+        </Row>
+      </Column>
+      <Column>
+        <Group name="Triggers" orientation="vertical">
+            <Param value="BTN#SCENE" type="button" name="Scene"
+            maximum="1" minimum="0"  aspect=".9" />
+            <Param value="BTN#MESSAGE" type="button" name="Message"
+            maximum="1" minimum="0" aspect=".9" />
+            <Param value="BTN#FIXEDVEL" type="button"
+            name="Fixed velocity" maximum="1" minimum="0" aspect=".9" />
+            <Param value="BTN#PROGCHANGE" type="button"
+            name="Prog change" maximum="1" minimum="0" aspect=".9" />
+        </Group>
+      </Column>
+      <Column>
+        <Group name="Pads" columns="4">
+            <Param value="PAD#1" type="button" name="Pad 01"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#2" type="button" name="Pad 02"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#3" type="button" name="Pad 03"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#4" type="button" name="Pad 04"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#5" type="button" name="Pad 05"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#6" type="button" name="Pad 06"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#7" type="button" name="Pad 07"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#8" type="button" name="Pad 08"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#9" type="button" name="Pad 09"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#10" type="button" name="Pad 10"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#11" type="button" name="Pad 11"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#12" type="button" name="Pad 12"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#13" type="button" name="Pad 13"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#14" type="button" name="Pad 14"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#15" type="button" name="Pad 15"
+            maximum="127" minimum="0" size="2" />
+            <Param value="PAD#16" type="button" name="Pad 16"
+            maximum="127" minimum="0" size="2" />
+        </Group>
+      </Column>
+    </Row>
+  </Parameters>
+</Device>
