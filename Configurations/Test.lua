@@ -12,6 +12,26 @@ duplex_configurations:insert {
   },
   
   applications = {
+     A = {
+        application = "Constant",
+        mappings = {
+           control = {
+              group_name = "EnablePads",
+              index = 9,
+              value = "1",
+           }
+        },
+     },
+     B = {
+        application = "Constant",
+        mappings = {
+           control = {
+              group_name = "MapPads",
+              index = 9,
+              value = "30",
+           }
+        },
+     },
     Transport = {
       mappings = {
         stop_playback = {

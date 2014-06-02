@@ -17,6 +17,24 @@ function PadKontrolMap:determine_type(str)
     return OSC_MESSAGE
   elseif str:sub(1, 8) == "ENCODER#" then
     return OSC_MESSAGE
+  elseif str:sub(1,4) == "MAP#" then
+    return OSC_MESSAGE
+  elseif str:sub(1,7) == "ENABLE#" then
+    return OSC_MESSAGE
+  elseif str:sub(1,8) == "CHANNEL#" then
+    return OSC_MESSAGE
+  elseif str == "MAPX" then
+    return OSC_MESSAGE
+  elseif str == "MODEX" then
+    return OSC_MESSAGE
+  elseif str == "CHANNELX" then
+    return OSC_MESSAGE
+  elseif str == "MAPY" then
+    return OSC_MESSAGE
+  elseif str == "MODEY" then
+    return OSC_MESSAGE
+  elseif str == "CHANNELY" then
+    return OSC_MESSAGE
   else
     error(("unknown message-type: %s"):format(str or "nil"))
   end
@@ -57,6 +75,10 @@ function padKONTROL:__init(display_name, message_stream, port_in, port_out)
   self.control_map = PadKontrolMap()
 end
 
+local XY_MODE_DISABLE = 0
+local XY_MODE_CC = 1
+local XY_MODE_PITCHBEND = 2
+
 function padKONTROL:open()
   local input_devices = renoise.Midi.available_input_devices()
   local output_devices = renoise.Midi.available_output_devices()
@@ -76,20 +98,66 @@ function padKONTROL:open()
     LOG("Notice: Could not create MIDI output device ", self.port_out)
   end
  
+
+
   self:send_sysex_message(0x42, 0x40, 0x6E, 0x08, 0x00, 0x00, 0x01)
-  self:send_sysex_message(0x42, 0x40, 0x6E, 0x08, 0x3F, 0x2A, 0x00,
-                          0x00, 0x05, 0x05, 0x05, 0x7F, 0x7E, 0x7F,
-                          0x7F, 0x03, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A,
-                          0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A,
-                          0x0A, 0x0A, 0x0A, 0x0A, 0x01, 0x02, 0x03,
-                          0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-                          0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10)
+
+  self.global_channel = 1
+  self.x_mode = XY_MODE_DISABLE
+  self.y_mode = XY_MODE_DISABLE
+  self.x_channel = 1
+  self.y_channel = 1
+  self.x_cc = 1
+  self.y_cc = 1
+  self.pad_mode = {0, 0, 0, 0,
+                   0, 0, 0, 0,
+                   0, 0, 0, 0,
+                   0, 0, 0, 0}
+  self.pad_channel = {1, 1, 1, 1,
+                      1, 1, 1, 1,
+                      1, 1, 1, 1,
+                      1, 1, 1, 1}
+  self.pad_note = {0, 1, 2, 3,
+                   4, 5, 6, 7,
+                   8, 9, 10, 11,
+                   12, 13, 14, 15}
+
+  self:sync_setup()
 
   self:send_sysex_message(0x42, 0x40, 0x6E, 0x08, 0x3F, 0x0A, 0x01,
                           0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                           0x00, 0x00)
 
   self:disp("---")
+end
+
+function padKONTROL:sync_setup()
+   local packet = {0x42, 0x40, 0x6E, 0x08, 0x3F, 0x2A, 0x00,
+                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+
+   packet[7 + 1] = self.global_channel - 1
+   packet[7 + 2] = self.x_mode + self.y_mode * 4
+   packet[7 + 3] = self.x_channel - 1
+   packet[7 + 4] = self.y_channel - 1
+   packet[7 + 5] = self.x_cc
+   packet[7 + 6] = self.y_cc
+   packet[7 + 7] = 0
+   packet[7 + 8] = 0
+   packet[7 + 9] = 0
+   for i=16, 1, -1 do
+      local a = math.floor((i-1)/7)
+      packet[7 + 7 + a] = packet[7 + 7 + a] * 2
+      packet[7 + 7 + a] = packet[7 + 7 + a] + self.pad_mode[i]
+      packet[7 + 9 + i] = self.pad_channel[i]
+      packet[7 + 25 + i] = self.pad_note[i]
+   end
+
+   self:send_sysex_message(unpack(packet))
 end
 
 function padKONTROL:release()
@@ -140,6 +208,33 @@ function padKONTROL:send_osc_message(key, value)
   elseif key:sub(1, 8) == "ENCODER#" then
   elseif key == "DISPLAY" then
      self:disp(value)
+  elseif key:sub(1,4) == "MAP#" then
+     self.pad_note[tonumber(key:sub(5))] = tonumber(value)
+     self:sync_setup()
+  elseif key:sub(1,7) == "ENABLE#" then
+     self.pad_mode[tonumber(key:sub(8))] = tonumber(value)
+     self:sync_setup()
+  elseif key:sub(1,8) == "CHANNEL#" then
+     self.pad_mode[tonumber(key:sub(9))] = tonumber(value)
+     self:sync_setup()
+  elseif key == "MAPX" then
+     self.x_cc = tonumber(value)
+     self:sync_setup()
+  elseif key == "MODEX" then
+     self.x_mode = tonumber(value)
+     self:sync_setup()
+  elseif key == "CHANNELX" then
+     self.x_channel = tonumber(value)
+     self:sync_setup()
+  elseif key == "MAPY" then
+     self.x_cc = tonumber(value)
+     self:sync_setup()
+  elseif key == "MODEY" then
+     self.x_mode = tonumber(value)
+     self:sync_setup()
+  elseif key == "CHANNELY" then
+     self.x_channel = tonumber(value)
+     self:sync_setup()
   else
      error(("unknown message: %s"):format(str or "nil"))
   end

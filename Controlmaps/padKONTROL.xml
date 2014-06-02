@@ -7,7 +7,7 @@
     <Row>
       <Group name="Display">
         <Param value="DISPLAY" type="label"
-               name="Display" size="3" aspect=".33" text="" />
+               name="Display" size="3" aspect=".33" text="---" />
       </Group>
       <Group name="Knob1">
         <Param value="BTN#KNOB1ASSIGN" type="button"
@@ -116,6 +116,133 @@
             maximum="127" minimum="0" size="2" />
         </Group>
       </Column>
+    </Row>
+    <Row>
+      <Column>
+        <Group name="MapPads" columns="4">
+            <Param value="MAP#1" type="label" name="Pad note 01"
+            maximum="127" minimum="0" />
+            <Param value="MAP#2" type="label" name="Pad note 02"
+            maximum="127" minimum="0" />
+            <Param value="MAP#3" type="label" name="Pad note 03"
+            maximum="127" minimum="0" />
+            <Param value="MAP#4" type="label" name="Pad note 04"
+            maximum="127" minimum="0" />
+            <Param value="MAP#5" type="label" name="Pad note 05"
+            maximum="127" minimum="0" />
+            <Param value="MAP#6" type="label" name="Pad note 06"
+            maximum="127" minimum="0" />
+            <Param value="MAP#7" type="label" name="Pad note 07"
+            maximum="127" minimum="0" />
+            <Param value="MAP#8" type="label" name="Pad note 08"
+            maximum="127" minimum="0" />
+            <Param value="MAP#9" type="label" name="Pad note 09"
+            maximum="127" minimum="0" />
+            <Param value="MAP#10" type="label" name="Pad note 10"
+            maximum="127" minimum="0" />
+            <Param value="MAP#11" type="label" name="Pad note 11"
+            maximum="127" minimum="0" />
+            <Param value="MAP#12" type="label" name="Pad note 12"
+            maximum="127" minimum="0" />
+            <Param value="MAP#13" type="label" name="Pad note 13"
+            maximum="127" minimum="0" />
+            <Param value="MAP#14" type="label" name="Pad note 14"
+            maximum="127" minimum="0" />
+            <Param value="MAP#15" type="label" name="Pad note 15"
+            maximum="127" minimum="0" />
+            <Param value="MAP#16" type="label" name="Pad note 16"
+            maximum="127" minimum="0" />
+        </Group>
+    </Column>
+    <Column>
+        <Group name="ChannelPads" columns="4">
+            <Param value="CHANNEL#1" type="label" name="Pad channel 01"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#2" type="label" name="Pad channel 02"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#3" type="label" name="Pad channel 03"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#4" type="label" name="Pad channel 04"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#5" type="label" name="Pad channel 05"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#6" type="label" name="Pad channel 06"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#7" type="label" name="Pad channel 07"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#8" type="label" name="Pad channel 08"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#9" type="label" name="Pad channel 09"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#10" type="label" name="Pad channel 10"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#11" type="label" name="Pad channel 11"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#12" type="label" name="Pad channel 12"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#13" type="label" name="Pad channel 13"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#14" type="label" name="Pad channel 14"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#15" type="label" name="Pad channel 15"
+            maximum="16" minimum="1" />
+            <Param value="CHANNEL#16" type="label" name="Pad channel 16"
+            maximum="16" minimum="1" />
+        </Group>
+    </Column>
+    <Column>
+        <Group name="EnablePads" columns="4">
+            <Param value="ENABLE#1" type="label" name="Pad enable 01"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#2" type="label" name="Pad enable 02"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#3" type="label" name="Pad enable 03"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#4" type="label" name="Pad enable 04"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#5" type="label" name="Pad enable 05"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#6" type="label" name="Pad enable 06"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#7" type="label" name="Pad enable 07"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#8" type="label" name="Pad enable 08"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#9" type="label" name="Pad enable 09"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#10" type="label" name="Pad enable 10"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#11" type="label" name="Pad enable 11"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#12" type="label" name="Pad enable 12"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#13" type="label" name="Pad enable 13"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#14" type="label" name="Pad enable 14"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#15" type="label" name="Pad enable 15"
+            maximum="1" minimum="0" />
+            <Param value="ENABLE#16" type="label" name="Pad enable 16"
+            maximum="1" minimum="0" />
+        </Group>
+    </Column>
+
+    <Column>
+         <Group name="XYConf">
+            <Param value="MODEX" type="label" name="X Mode"
+            maximum="0" minimum="2" />
+            <Param value="MODEY" type="label" name="Y Mode"
+            maximum="0" minimum="2" />
+            <Param value="CHANNELX" type="label" name="X Channel"
+            maximum="1" minimum="16" />
+            <Param value="CHANNELY" type="label" name="Y Channel"
+            maximum="1" minimum="16" />
+            <Param value="MAPX" type="label" name="X CC"
+            maximum="0" minimum="127" />
+            <Param value="MAPY" type="label" name="Y CC"
+            maximum="0" minimum="127" />
+        </Group>
+    </Column>
     </Row>
   </Parameters>
 </Device>
