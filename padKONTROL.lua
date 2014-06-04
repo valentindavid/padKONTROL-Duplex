@@ -6,35 +6,35 @@ end
 
 function PadKontrolMap:determine_type(str)
   if str == "XYPAD" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str == "DISPLAY" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str:sub(1, 4) == "BTN#" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str:sub(1, 4) == "PAD#" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str:sub(1, 5) == "KNOB#" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str:sub(1, 8) == "ENCODER#" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str:sub(1,4) == "MAP#" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str:sub(1,7) == "ENABLE#" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str:sub(1,8) == "CHANNEL#" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str == "MAPX" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str == "MODEX" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str == "CHANNELX" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str == "MAPY" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str == "MODEY" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   elseif str == "CHANNELY" then
-    return OSC_MESSAGE
+    return DEVICE_MESSAGE.OSC
   else
     error(("unknown message-type: %s"):format(str or "nil"))
   end
@@ -269,7 +269,7 @@ function padKONTROL:sysex_callback(message)
            local msg = Message()
            msg.value = value
            msg.is_note_off = false
-           msg.context = MIDI_NOTE_MESSAGE
+           msg.context = DEVICE_MESSAGE.MIDI_NOTE
            self:_send_message(msg, v["xarg"])
         end
      elseif (n >= 0x00) and (n <= 0x0F) then
@@ -278,7 +278,7 @@ function padKONTROL:sysex_callback(message)
            local msg = Message()
            msg.value = 0
            msg.is_note_off = true
-           msg.context = MIDI_NOTE_MESSAGE
+           msg.context = DEVICE_MESSAGE.MIDI_NOTE
 
            self:_send_message(msg, v["xarg"])
         end

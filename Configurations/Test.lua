@@ -8,7 +8,7 @@ duplex_configurations:insert {
     device_port_in = "padKONTROL",
     device_port_out = "padKONTROL",
     control_map = "Controllers/padKONTROL/Controlmaps/padKONTROL.xml",
-    protocol = DEVICE_MIDI_PROTOCOL
+    protocol = DEVICE_PROTOCOL.MIDI
   },
   
   applications = {
